@@ -1,0 +1,32 @@
+
+<INCLURE{fond=inc/inc-connexionpmb}{env}>
+<BOUCLE_breve_principal(BREVES) {id_breve}>
+  [(#REM) Breves dans la meme rubrique ]
+  <B_breves>
+  <div class="liste breves">
+      <h2 class="h2"><:autres_breves:></h2>
+      <ul class="liste-items">
+          <BOUCLE_breves(BREVES) {id_rubrique} {par date}{inverse} {0,10}>
+          <li class="item">[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_BREVE"[ class="(#EXPOSE)"]>#TITRE</a></li>
+          </BOUCLE_breves>
+      </ul>
+  </div>
+  </B_breves>
+
+  [(#REM) Menu de navigation mots-cles ]
+  <B_mots>
+  <div class="liste mots">
+      <h2 class="h2"><:mots_clefs:></h2>
+      <ul class="liste-items">
+      <BOUCLE_mots(MOTS) {id_breve}{titre!=actualite}{titre!=critiques} {par titre}>
+          <li class="item"><a href="#URL_MOT" rel="tag">#TITRE</a></li>
+      </BOUCLE_mots>
+      </ul>
+  </div>
+  </B_mots>
+</BOUCLE_breve_principal>
+
+
+<INCLURE{fond=inc/inc-noticesconsultees}{env}>
+
+<INCLURE{fond=inc/inc-lienpmb}>

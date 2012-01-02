@@ -1,0 +1,18 @@
+[(#ENV{id_section}|non)
+    [(#ENV{id_location}|non)
+	[(#SET{tab_locations,[(#REM|pmb_liste_afficher_locations)]})]
+	<INCLURE{fond=structure}{env}{type=page}{composition=catalogue}{tab_locations=#GET{tab_locations}} />
+    ]
+]
+
+
+      [(#ENV{id_location}|oui)
+	[(#SET{tab_locationsections,[(#ENV{id_location}|pmb_location_extraire)]})]
+	<INCLURE{fond=structure}{env}{type=page}{composition=catalogue}{tab_locationsections=#GET{tab_locationsections}} />
+      ]
+      [(#ENV{id_section}|oui)
+	[(#SET{tab_sections,[(#ENV{id_section}|pmb_section_extraire)]})]
+	[(#SET{tab_locationsections_memo,[(#ENV{id_location_memo}|pmb_location_extraire)]})]
+	<INCLURE{fond=structure}{env}{type=page}{composition=catalogue}{tab_sections=#GET{tab_sections}}{tab_locationsections_memo=#GET{tab_locationsections_memo}} />
+      ]
+

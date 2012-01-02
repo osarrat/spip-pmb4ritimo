@@ -1,0 +1,22 @@
+
+<INCLURE{fond=inc/inc-connexionpmb}{env}>
+
+<BOUCLE_extra_rubrique(RUBRIQUES){id_rubrique}>
+	[(#REM) Menu de navigation mots-cles ]
+	<B_mots>
+	<div class="liste mots">
+		<h2 class="h2"><:mots_clefs:></h2>
+		<ul class="liste-items">
+			<BOUCLE_mots(MOTS) {id_rubrique} {titre!=actualite}{titre!=critiques} {par titre}>
+			<li class="item"><a href="#URL_MOT" rel="tag">#TITRE</a></li>
+			</BOUCLE_mots>
+		</ul>
+	</div>
+	</B_mots>
+</BOUCLE_extra_rubrique>
+
+
+
+<INCLURE{fond=inc/inc-noticesconsultees}{env}>
+
+<INCLURE{fond=inc/inc-lienpmb}>

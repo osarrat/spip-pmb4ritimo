@@ -1,0 +1,13 @@
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:pmb:collections:> &gt; <strong class="on">[(#ENV{tab_resultat}|pmb_notice_champ{'collection_name'}|couper{80})]</strong></p>
+	
+
+<div class="cartouche">
+	
+	<h1 class="h1">[(#ENV{tab_resultat}|pmb_notice_champ{'collection_name'})]</h1>
+	
+
+	
+</div>
+
+<INCLURE{fond=inc/inc-coll_see}{tab_resultat=#ENV{tab_resultat}}{env}>

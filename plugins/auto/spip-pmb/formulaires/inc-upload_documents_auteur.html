@@ -1,0 +1,31 @@
+<input type="hidden" value="#ID_AUTEUR" name="id_auteur" />
+<B_docs>
+<BOUCLE_docs(DOCUMENTS){id_auteur=#ID_AUTEUR}{!par id_document}{tout}>
+<div class="bord_formup">
+	<div class="spip_doc_descriptif spip_doc_logo float#LANG_RIGHT">
+		[(#SET{logo,[(#LOGO_DOCUMENT|#URL_DOCUMENT
+			|image_passe_partout{78,78}
+			|image_recadre{78,78,center}
+			|inserer_attribut{title,#TYPE_DOCUMENT[
+				- (#TAILLE|taille_en_octets)]}
+			)]}
+		)]
+		#GET{logo}
+		[(#DATE|affdate_court)]
+	</div>
+	<div class='decrire_doc'>
+		<div class='choix'>
+			<input type="checkbox" name="supprimer[]" id="surrpimer_[(#ID_DOCUMENT)]_#ENV{objet}_#ENV{id_objet}" class="checkbox" value="#ID_DOCUMENT" title="<:formupload:doc_delete:>" />
+			<label for="surrpimer_[(#ID_DOCUMENT)]_#ENV{objet}_#ENV{id_objet}"><:formupload:remove:></label>
+		</div>
+		<h4>[(#FICHIER|basename|couper{20})]</h4>
+		
+	</div>
+	<br class='nettoyeur' />
+	
+	
+</div>
+</BOUCLE_docs>
+</B_docs>
+	
+<//B_docs>

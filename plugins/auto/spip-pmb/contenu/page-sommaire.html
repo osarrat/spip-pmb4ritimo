@@ -1,0 +1,40 @@
+
+<div class="cartouche invisible">
+	<h1 class="h1 invisible">#NOM_SITE_SPIP</h1>
+</div>
+
+[<div id="descriptif_site_spip">(#DESCRIPTIF_SITE_SPIP)</div>]
+
+<B_articles>
+<div class="liste articles sommaire">
+	#ANCRE_PAGINATION
+	<h2 class="h2"><:derniers_articles:></h2>
+	<ul class="liste-items">
+		<BOUCLE_articles(ARTICLES) {!par date} {pagination 2}>
+		#INCLURE{fond=inclure/article-resume,id_article}
+		</BOUCLE_articles>
+	</ul>
+	[<p class="pagination">(#PAGINATION)</p>]
+</div>
+</B_articles>
+
+[(#REM) Nouveaux ouvrages ]
+<B_syndic_pmb>
+<div class="menu articles nouveautes liste sommaire">
+<h2 class="h2"><:pmb:nouveautes:></h2>
+			<a href="#URL_PAGE{nouveautes}" class="plus-de-liens"><:pmb:toutes_nouveautes:> +</a>
+			<ul class="liste-items">
+			[(#SET{compteur_nouveautes,0})]
+			<BOUCLE_syndic_pmb(SYNDIC_ARTICLES){par hasard}{url==notice_display}{0,2}>
+				
+				[(#SET{notice_id,[(#URL_ARTICLE|extraire_attribut_url{id})]})]
+				[(#SET{notice, [(#GET{notice_id}|pmb_notice_extraire{#CONFIG{spip_pmb/url},'force'})]})]
+				<INCLURE{fond=inc/inc-notice-resume}{notice=#GET{notice}}>[(#SET{compteur_nouveautes,[(#GET{compteur_nouveautes}|plus{1})]})]
+		
+			</BOUCLE_syndic_pmb>
+			</ul>
+</div>
+</B_syndic_pmb>
+
+
+		

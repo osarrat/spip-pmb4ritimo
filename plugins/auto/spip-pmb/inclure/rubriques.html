@@ -1,0 +1,43 @@
+[(#REM)
+	Barre de navigation, ouverte sur la hierarchie courante
+
+	On fait un plan, et, quand on avance vers une rubrique,
+	on l'affiche si son parent est expose ou est la racine du site. ]
+
+<B_rubriques>
+<div class="menu rubriques">
+	<h2 class="h2"><:rubriques:></h2>
+	<ul class="menu-liste">
+	<BOUCLE_rubriques(RUBRIQUES) {racine} {par num titre, titre}>
+		<li class="menu-entree">
+			<a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a>
+
+			<B_sous_rubriques>
+			<ul class="menu-liste">
+				<BOUCLE_sous_rubriques(RUBRIQUES) {id_parent} {par num titre, titre}><BOUCLE_test_expose(RUBRIQUES) {id_enfant}>#EXPOSE{' '}</BOUCLE_test_expose>
+					<li class="menu-entree"><a href="#URL_RUBRIQUE"[ class="(#EXPOSE)"]>[(#TITRE|couper{80})]</a><BOUCLE_re(BOUCLE_sous_rubriques)></BOUCLE_re>	</li>
+				</B_test_expose></BOUCLE_sous_rubriques>
+			</ul>
+			</B_sous_rubriques>
+
+		</li>
+	</BOUCLE_rubriques>
+
+	</ul>
+</div>
+</B_rubriques>
+
+[(#SET{tab_locations,[(#REM|pmb_liste_afficher_locations)]})]
+<B_locations>
+<div class="menu rubriques">
+	<h2 class="h2"><:pmb:catalogue:></h2>
+	<ul class="menu-liste">
+	      <BOUCLE_locations(POUR){tableau #GET{tab_locations}}>
+                <li class="menu-entree">
+                    	<a href="[(#URL_PAGE{catalogue}|parametre_url{id_location,[(#GET{tab_locations}|pmb_tableau2_valeur{#CLE,'location_id'})]})]">[(#GET{tab_locations}|pmb_tableau2_valeur{#CLE,'location_caption'})]</a>
+                </li>
+                </BOUCLE_locations>
+			
+	</ul>
+</div>
+</B_locations>

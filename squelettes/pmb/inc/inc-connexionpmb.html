@@ -1,0 +1,20 @@
+<h2><:pmb:mon_compte:></h2>
+[(#SESSION{id_auteur}|non)
+      #LOGIN_PUBLIC
+      
+      <!--br class="nettoyeur" /-->     
+]
+[(#SESSION{id_auteur}|oui)
+        <div class="formulaire_spip formulaire_moncomptepmb">
+	<form name="formulaire_moncomptepmb" method="post" action="#SELF">
+	    <fieldset>
+		<legend><:pmb:vous_etes_identifies:></legend>
+		<input type="hidden" name="action" value="deconnexion_pmb" />
+		<input type="hidden" name="redirect" value="#SELF" />
+		<INCLURE{fond=inc/inc-pmbdeconnexion}{env}>
+		<!--br class="nettoyeur" /-->
+	    </fieldset>
+	  </form>
+     </div>
+]
+

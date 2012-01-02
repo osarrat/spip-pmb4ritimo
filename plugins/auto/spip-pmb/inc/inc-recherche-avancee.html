@@ -1,0 +1,107 @@
+
+      <br class="nettoyeur" />
+      [<h2><:pmb:recherche_dans:> : (#ENV{tab_sections}|pmb_tableau2_valeur{0,section_caption}|ucfirst)</h2>]
+				
+	<div id="search">
+
+			
+			<p class="p1"><span></span></p>
+
+			<div class='formulaire_spip formulaire_recherche_avancee'>
+
+			<form action='[(#URL_PAGE{recherche}|ancre_url{ajax-recherche-catalogue})]' method='post'>
+				<fieldset>
+				[<input type='hidden' name='id_section' value='(#ENV{id_section})'/>]
+				[<input type='hidden' name='id_location_memo' value='(#ENV{id_location_memo})'/>]
+				[<input type='hidden' name='titre_section' value='(#ENV{titre_section})'/>]
+				<input type='hidden' name='page' value='[(#ENV{page}|sinon{recherche})]'/>
+				<input type='hidden' name='recherche_avancee' value='1'/>
+				<input type='hidden' name='look_PMB' value='1'/>
+				<input type='hidden' name='look_FIRSTACCESS' value='1' />
+				
+				<legend><:pmb:recherche_avancee:></legend>
+				<ul>
+				
+				<li class="infos-recherche-avancee"><:pmb:info_recherche_avancee:></li>
+				<li>
+				    <input type='text' name='recherche' class='text_query' value="[(#ENV{recherche})]" size='35' />
+				</li>
+				    
+
+				<li class="boutons">
+					<input type='submit' name='ok' value='Rechercher' class='boutonrechercher'/>
+				</li>
+				<li>
+				    [(#SET{tab_resultat, [(#REM|sinon{0}|pmb_recuperer_champs_recherche)]})]
+				    <B_tab_resultat>
+				    <BOUCLE_tab_resultat(POUR){tableau #GET{tab_resultat}}>
+						[(#SET{valeur_sav,#VALEUR})]
+						[(#GET{valeur_sav}|table_valeur{id}|=={17}|oui)
+							[(#SET{valeurs_champs,[(#GET{valeur_sav}|table_valeur{values})]})]
+							<select name='typdoctemp' class="invisible">
+							<option  value=''>tout type de document</option>
+						]
+						<BOUCLE_valeurs_champs(POUR){tableau #GET{valeurs_champs}}>
+							[(#GET{valeur_sav}|table_valeur{id}|=={17}|oui)
+							  <option  value='[(#VALEUR|table_valeur{value_id})]'[(#ENV{typdoc}|=={[(#GET{valeurs_champs|pmb_tableau2_valeur{#CLE,value_id})]}|?{' ',''})selected="selected")]>[(#VALEUR|table_valeur{value_caption})]</option>
+							]
+						</BOUCLE_valeurs_champs> 
+						[(#GET{valeur_sav}|table_valeur{id}|=={17}|oui)
+							</select>
+						]
+				    </BOUCLE_tab_resultat>
+				    </B_tab_resultat>
+
+				    <select name='typdoc'>  
+					  <option  value=''>tout type de document</option>
+					  
+					  <option  value='a'[(#ENV{typdoc}|=={a}|?{' ',''})selected="selected")]>texte imprim&eacute;</option>
+					  <option  value='b'[(#ENV{typdoc}|=={b}|?{' ',''})selected="selected")]>texte manuscrit</option>
+					  <option  value='c'[(#ENV{typdoc}|=={c}|?{' ',''})selected="selected")]>partition musicale imprim&eacute;e</option>
+					  <option  value='e'[(#ENV{typdoc}|=={e}|?{' ',''})selected="selected")]>document cartographique imprim&eacute;</option>
+					  <option  value='g'[(#ENV{typdoc}|=={g}|?{' ',''})selected="selected")]>document projet&eacute; ou vid&eacute;o</option>
+					
+					  <option  value='i'[(#ENV{typdoc}|=={i}|?{' ',''})selected="selected")]>enregistrement sonore non musical</option>
+					  <option  value='j'[(#ENV{typdoc}|=={j}|?{' ',''})selected="selected")]>enregistrement sonore musical</option>
+					  <option  value='k'[(#ENV{typdoc}|=={k}|?{' ',''})selected="selected")]>document graphique &agrave; deux dimensions</option>
+					  <option  value='l'[(#ENV{typdoc}|=={l}|?{' ',''})selected="selected")]>document &eacute;lectronique</option>
+					  <option  value='m'[(#ENV{typdoc}|=={m}|?{' ',''})selected="selected")]>document multim&eacute;dia</option>
+					
+					  <option  value='r'[(#ENV{typdoc}|=={r}|?{' ',''})selected="selected")]>objet &agrave; 3 dimensions, artefacts, ...</option>
+				    </select>
+				</li>
+				<li>
+					<table class="spip champ-recherche">
+					<tbody>
+						<tr class="row_even">
+						  <td><input type='checkbox' name='look_TITLE' id='recherche_avancee_look_TITLE' value='1'[(#ENV{look_TITLE}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_TITLE'> Titres </label></td>
+						  <td><input type='checkbox' name='look_AUTHOR' id='recherche_avancee_look_AUTHOR' value='1'[(#ENV{look_AUTHOR}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_AUTHOR'> Auteurs </label></td>
+						  <td><input type='checkbox' name='look_PUBLISHER' id='recherche_avancee_look_PUBLISHER' value='1'[(#ENV{look_PUBLISHER}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_PUBLISHER'> Editeurs </label></td>
+						</tr>
+						<tr class="row_odd">
+						  <td><input type='checkbox' name='look_COLLECTION' id='recherche_avancee_look_COLLECTION' value='1'[(#ENV{look_COLLECTION}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_COLLECTION'> Collections </label></td>
+						  <td><input type='checkbox' name='look_SUBCOLLECTION' id='recherche_avancee_look_SUBCOLLECTION' value='1'[(#ENV{look_SUBCOLLECTION}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_SUBCOLLECTION'> Sous-collections </label></td>
+						  <td><input type='checkbox' name='look_CATEGORY' id='recherche_avancee_look_CATEGORY' value='1'[(#ENV{look_CATEGORY}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_CATEGORY'> Cat&eacute;gories </label></td>
+						</tr>
+						<tr class="row_even">
+						  <td><input type='checkbox' name='look_KEYWORDS' id='recherche_avancee_look_KEYWORDS' value='1'[(#ENV{look_KEYWORDS}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_KEYWORDS'> Tags</label></td>
+						  <td><input type='checkbox' name='look_ABSTRACT' id='recherche_avancee_look_ABSTRACT' value='1'[(#ENV{look_ABSTRACT}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_ABSTRACT'> R&eacute;sum&eacute; et notes </label></td>
+						  <td><input type='checkbox' name='look_ALL' id='recherche_avancee_look_ALL' value='1'[(#ENV{look_ALL}|=={1}|?{' ',''})checked="checked"] /><label for='look_ALL'> Tous les champs </label></td>
+						</tr>
+						<tr class="row_odd">
+						  <td><input type='checkbox' name='look_INDEXINT' id='recherche_avancee_look_INDEXINT' value='1'[(#ENV{look_INDEXINT}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_INDEXINT'> Indexations d&eacute;cimales </label></td>
+						  <td></td>
+						  <td></td>
+						</tr>
+					</tbody>
+					</table>
+				</li>
+				</ul>
+
+				</fieldset>
+
+			</form>
+
+			</div>
+
+		</div>

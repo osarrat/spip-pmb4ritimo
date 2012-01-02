@@ -1,0 +1,23 @@
+		
+[(#REM) Fil d'Ariane ]
+<p id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_rechercher:>[ &gt; <strong class="on">(#RECHERCHE)</strong>]</p>
+
+[<div class="cartouche">
+	<h1 class="h1"><:resultats_recherche:></h1>
+	<p class="soustitre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
+</div>]
+
+
+
+		<INCLURE{fond=inc/inc-recherche-avancee}{recherche}{env}>
+		[(#ENV{look_SITE}|=={1}|?{' ',''})
+			<INCLURE{fond=inc/inc-recherche-site}{recherche}{env}>
+		]
+		[(#ENV{look_PMB}|=={1}|?{' ',''})
+			<div id="ajax-recherche-catalogue" class="ajax-content"><img src="#CHEMIN{img/ajaxLoader.gif}" class="ajax-loader" alt="<:pmb:chargement:>" width="43" height="43" /></div>
+							       <script type="text/javascript">
+								    $(document).ready(function() {
+								      $('#ajax-recherche-catalogue').load("[(#URL_PAGE{ajax-recherche-catalogue})]", { 'recherche': '[(#ENV{recherche}|urlencode)]', 'look_ALL': '#ENV{look_ALL}', 'look_AUTHOR': '#ENV{look_AUTHOR}', 'look_PUBLISHER': '#ENV{look_PUBLISHER}', 'look_COLLECTION': '#ENV{look_COLLECTION}', 'look_SUBCOLLECTION': '#ENV{look_SUBCOLLECTION}', 'look_CATEGORY': '#ENV{look_CATEGORY}', 'look_INDEXINT': '#ENV{look_INDEXINT}', 'look_KEYWORDS': '#ENV{look_KEYWORDS}', 'look_TITLE': '#ENV{look_TITLE}', 'look_ABSTRACT': '#ENV{look_ABSTRACT}', 'id_section': '#ENV{id_section}', 'debut': '#ENV{debut}', 'fin': '#ENV{fin}', 'typdoc': '#ENV{typdoc}', 'id_location_memo': '#ENV{id_location_memo}' }, function (responseText, textStatus, XMLHttpRequest) { $(this).find('.ajax-loader').remove();});
+								  });
+								</script>
+		]

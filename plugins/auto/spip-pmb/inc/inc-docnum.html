@@ -1,0 +1,30 @@
+[(#SET{tab_docnum, [(#ENV{id}|pmb_ws_documents_numeriques)]})]
+
+	[(#REM) Portfolio : album d'images ]
+	<B_tab_docnumimages>
+	<div class="documents documents_portfolio">
+		<h2 class="h2"><:info_portfolio:></h2>
+		  <BOUCLE_tab_docnumimages(POUR){tableau #GET{tab_docnum}}>[(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, mimetype}|contient{image}|oui)[
+			  <a href="(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, downloadUrl})" type="[(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, mimetype})]"[ title="(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, name}|attribut_html|couper{80})"]>[(#REM|sinon{'<img />'}|inserer_attribut{src,[(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, downloadUrl}|sinon{[(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, url})]})]}|image_reduire{0,100}
+				    |inserer_attribut{class,spip_logos}
+				    |inserer_attribut{alt,[(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, name}|attribut_html|couper{80})]})]</a>
+		    ]]</BOUCLE_tab_docnumimages>
+		
+	</div>
+	</B_tab_docnumimages>
+	<//B_tab_docnumimages> 
+
+	[(#REM) Liste des autres documents joints ]
+	<B_tab_docnumjoints>
+	<div class="liste documents documents_joints">
+		<h2 class="h2"><:titre_documents_joints:></h2>
+		<ul class="liste-items">
+		  <BOUCLE_tab_docnumjoints(POUR){tableau #GET{tab_docnum}}>[(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, mimetype}|contient{image}|non)[
+			<li class="item">
+			      <strong><a href="(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, downloadUrl})" title="<:bouton_telecharger:>" type="[(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, mimetype})]">[(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, name}|sinon{<:info_document:>})]</a></strong>
+			 </li>
+		  ]]</BOUCLE_tab_docnumjoints>
+	</div>
+	</B_tab_docnumjoints>
+	<//B_tab_docnumjoints> 
+

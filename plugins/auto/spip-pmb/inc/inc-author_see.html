@@ -1,0 +1,52 @@
+
+	<div class="corps-conteneur surlignable">
+		<div class="pmb-ouvrage-infos">	
+			<table class="spip pmb-tableau">
+			      <tbody>
+			       [<tr><td><strong><:pmb:serie:></strong></td><td>(#ENV{notice}|pmb_notice_champ{'serie'})</td></tr>]
+			      
+			[<tr><td><strong><:pmb:author_date:></strong></td><td>(#ENV{tab_resultat}|pmb_notice_champ{'author_date'})</td></tr>]
+			[<tr><td><strong><:pmb:author_web:></strong></td><td><a class="spip_out" href="[(#ENV{tab_resultat}|pmb_notice_champ{'author_web'})]">(#ENV{tab_resultat}|pmb_notice_champ{'author_web'})</a></td></tr>]
+			[<tr><td><strong><:pmb:author_lieu:></strong></td><td>(#ENV{tab_resultat}|pmb_notice_champ{'author_lieu'})</td></tr>]
+			[<tr><td><strong><:pmb:author_ville:></strong></td><td>(#ENV{tab_resultat}|pmb_notice_champ{'author_ville'})</td></tr>]
+			[<tr><td><strong><:pmb:author_pays:></strong></td><td>(#ENV{tab_resultat}|pmb_notice_champ{'author_pays'})</td></td>]
+			      </tbody>
+			</table>
+			
+			
+		</div>
+		[<div class="texte entry-content">(#ENV{tab_resultat}|pmb_notice_champ{'author_comment'}|ucfirst)</div>]
+	</div>
+	<div class="liste menu articles ouvrages">
+			[(#SET{tab_notices,[(#ENV{tab_resultat}|pmb_notice_champ{'notice_ids'})]})]
+			<B_tab_resultat>
+				<br class="nettoyeur" />
+				[(#GET{tab_notices}|pmb_tableau2_valeur{0,nb_resultats}|>{1}|oui)
+				      [<p><:pmb:resultats:> [(#ENV{debut}|plus{1})] <:pmb:a:> [(#ENV{debut}|plus{[(#ENV{fin}|sinon{5})]}|min{[(#GET{tab_notices}|pmb_tableau2_valeur{0,nb_resultats})]})] <:pmb:sur:> (#GET{tab_notices}|pmb_tableau2_valeur{0,nb_resultats}) <:pmb:ouvrages_trouves:>.</p>]
+				 ]
+				[(#GET{tab_notices}|pmb_tableau2_valeur{0,nb_resultats}|>{1}|non)
+				      [<p>(#GET{tab_notices}|pmb_tableau2_valeur{0,nb_resultats}) <:pmb:ouvrage_trouve:> :</p>]
+				 ]
+				[(#GET{tab_notices}|pmb_tableau2_valeur{0,nb_resultats}|moins{5}|<={0}|non)<a style="float: right;" class="pmb_pagination_suiv" href="[(#SELF|parametre_url{debut,[(#ENV{debut}|plus{5})]})]#resultats_recherche"><:pmb:resultats_suivants:> >></a>]
+				[(#ENV{debut}|sinon{0}|moins{5}|>={0}|oui)<a style="float: left;" class="pmb_pagination_prec" href="[(#SELF|parametre_url{connect,''}|parametre_url{debut,[(#ENV{debut}|moins{5})]})]#resultats_recherche"><< <:pmb:resultats_precedents:></a>]
+				<br class="nettoyeur" />
+
+			<h2 class="h2"><:pmb:ouvrages:></h2>
+			<ul class="liste-items">
+				<BOUCLE_tab_resultat(POUR){tableau #GET{tab_notices}}>
+					[(#COMPTEUR_BOUCLE|>{1}|oui)
+			 	
+						<INCLURE{fond=inc/inc-notice-resume}{notice=#VALEUR}{surlignable=1}{compteur=#COMPTEUR_BOUCLE|moins{1}}>
+						
+					]
+				</BOUCLE_tab_resultat>
+			</ul>
+			<br class="nettoyeur" />
+			[(#GET{tab_notices}|pmb_tableau2_valeur{0,nb_resultats}|moins{5}|<={0}|non)<a style="float: right;" class="pmb_pagination_suiv" href="[(#SELF|parametre_url{connect,''}|parametre_url{debut,[(#ENV{debut}|plus{5})]})]#resultats_recherche"><:pmb:resultats_suivants:> >></a>]
+				[(#ENV{debut}|sinon{0}|moins{5}|>={0}|oui)<a style="float: left;" class="pmb_pagination_prec" href="[(#SELF|parametre_url{debut,[(#ENV{debut}|moins{5})]})]#resultats_recherche"><< <:pmb:resultats_precedents:></a>]
+
+			
+			</B_tab_resultat>
+				<:pmb:pas_d_ouvrages_trouves:>
+			<//B_tab_resultat>
+	</div> 

@@ -1,0 +1,37 @@
+les fichiers dans le repertoire /inc  
+	
+	 inc-notice-resume.html gere
+
+	-les liens des titres des notices 
+	-les apperçus des resumes des notices 
+	-les liens lire le suite
+=======================================================================================
+	inc-notice_display.html gere
+
+	- l'affichage des notices et des exemplaire dans le corps du site
+	- l'affichage ou non des disponibilités des exemplaire ...
+	-l'affichage des caracteristiques d'une notice (format, ISBN, date de publication ...
+
+========================================================================================
+
+	structure.html gere
+
+	-l'habillage du site
+	-Avoir si le plugin ZPIP est necessaire à pmb
+	-modifier ce fichier car force l'habillage du site où s'affche les notices
+===================================================================================
+
+	inc-documents.html gere
+ 
+	-l'affichage des logos dans les notices
+	-l'affichage des des fichiers joins
+====================================================================================
+
+	inc-notice_dispo gere
+	
+	-les liens presents dans le tableau de presentation des exemplaires de notices
+=======================================================================================
+
+
+	
+

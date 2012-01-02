@@ -1,0 +1,23 @@
+[(#REM)
+	Ces deux balises #NOM_SITE_SPIP et #DESCRIPTIF_SITE_SPIP
+	permettent de récupérer des informations de configuration de SPIP
+	que l'on renseigne dans l'espace privé.
+
+	Ces enregistrements sont stockés en base de donnée dans une
+	table appelée "spip_meta". Les champs de la table peuvent aussi
+	être récupérés en utilisant la balise #CONFIG{nom de la configuration}
+	ce qui donnerait ici : #CONFIG{nom_site_spip}
+
+	Les |mot suivants les #BALISE indique qu'on applique certains traitements
+	au texte retourné par la balise.
+
+	|textebrut supprime toute balise HTML, |couper{150} coupe le texte
+	retourné à 150 caractères. Ces "filtres" peuvent se chaîner
+	|filtreA|filtreB ...
+
+	Ces deux lignes permettent au bout du compte de renseigner le titre
+	de la page affiché tout en haut du navigateur ainsi que la description du site
+	(utile aux moteurs de recherche)
+]
+<title><:pmb:nouveautes:>[ - (#NOM_SITE_SPIP|typo|textebrut)][ - (#SLOGAN_SITE_SPIP|typo|textebrut)]</title>
+[<meta name="description" content="(#DESCRIPTIF_SITE_SPIP|couper{150}|textebrut)" />]

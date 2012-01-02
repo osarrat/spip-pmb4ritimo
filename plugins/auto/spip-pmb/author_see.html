@@ -1,0 +1,2 @@
+[(#SET{tab_resultat,[(#ENV{id}|pmb_auteur_extraire{[(#ENV{debut}|sinon{0})],[(#ENV{fin}|sinon{5})]})]})
+]<INCLURE{fond=structure}{env}{type=page}{composition=author_see}{tab_resultat=#GET{tab_resultat}} />

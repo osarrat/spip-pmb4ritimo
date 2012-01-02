@@ -1,0 +1,23 @@
+
+<INCLURE{fond=inc/inc-connexionpmb}{env}>
+
+<BOUCLE_extra_auteur(AUTEURS){id_auteur}{tous}>
+	[(#REM) Autres auteurs ]
+	<B_auteurs>
+	<div class="liste auteurs">
+		#ANCRE_PAGINATION
+		<h2 class="h2"><:info_auteurs:></h2>
+		<ul class="liste-items">
+			<BOUCLE_auteurs(AUTEURS) {par nom} {pagination 20}>
+			<li class="item"><a href="#URL_AUTEUR"[ class="(#EXPOSE)"]>[(#NOM|couper{80})]</a></li>
+			</BOUCLE_auteurs>
+		</ul>
+		[<p class="pagination">(#PAGINATION)</p>]
+	</div>
+	</B_auteurs>
+</BOUCLE_extra_auteur>
+
+
+<INCLURE{fond=inc/inc-noticesconsultees}{env}>
+
+<INCLURE{fond=inc/inc-lienpmb}>

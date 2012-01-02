@@ -1,0 +1,40 @@
+<BOUCLE_auteur(AUTEURS){id_auteur}{id_auteur=#SESSION{id_auteur}}{tous}>	
+<ul class="liste-items infos-compte-lecteur">
+[<li class="item">
+      <h2><:pmb:changer_logo:></h2>
+     (#FORMULAIRE_UPLOAD{auteur,#SESSION{id_auteur},inc-upload_documents_auteur})	
+</li>]
+
+<B_auteurpmb>
+<li class="item">
+<h2><:pmb:compte_lecteur:></h2>
+<BOUCLE_auteurpmb(AUTEURS_PMB){id_auteur}>
+
+	    [(#PMB_SESSION|oui)
+	     <INCLURE{fond=inc/inc-moncompte}{env}>
+	    ]
+	    [(#PMB_SESSION|non)
+		<div class="texte entry-content">Votre session a expir&eacute;, veuillez vous identifier de nouveau.</div>
+	    ]
+</BOUCLE_auteurpmb>
+</li>
+</B_auteurpmb>
+
+<li class="item">
+	<h2><:icone_informations_personnelles:></h2>
+	<div>
+		[(#FORMULAIRE_EDITER_AUTEUR{#SESSION{id_auteur},#SELF,env})]
+	</div>
+</li>
+
+[(#ENV{proposer_article}|oui)
+<li class="item">
+      <h2><:icone_ecrire_article:></h2>
+      #FORMULAIRE_EDITER_ARTICLE
+      
+</li>
+]
+
+</ul>
+</BOUCLE_auteur>
+	

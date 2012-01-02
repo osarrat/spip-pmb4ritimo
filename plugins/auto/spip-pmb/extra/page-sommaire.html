@@ -1,0 +1,36 @@
+
+<INCLURE{fond=inc/inc-connexionpmb}{env}>
+
+[(#REM) Inscription au site ]
+#FORMULAIRE_INSCRIPTION
+
+[(#REM) Liens des forums ]
+<B_forums_liens>
+<div class="liste forums">
+	<h2 class="h2"><:derniers_commentaires:></h2>
+	<ul class="liste-items">
+		<BOUCLE_forums_liens(FORUMS?) {plat} {par date}{inverse} {0,8}>
+		<li class="item">[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_FORUM"[ title="(#TITRE|attribut_html|couper{80})"]>[(#TEXTE|couper{80})]</a></li>
+		</BOUCLE_forums_liens>
+	</ul>
+</div>
+</B_forums_liens>
+
+
+[(#REM) Sur le Web ]
+<B_syndic>
+<div class="liste syndic_articles">
+	<h2 class="h2"><:nouveautes_web:></h2>
+	<ul class="liste-items">
+		<BOUCLE_syndic(SYNDIC_ARTICLES) {age<180} {par date}{inverse} {0,6}>[(#URL_ARTICLE|match{opac}|non)
+		<li class="item">[(#DATE|affdate_jourcourt) &ndash; ]<a href="#URL_ARTICLE"[ title="(#NOM_SITE|attribut_html|couper{80})"] class="spip_out">#TITRE</a></li>
+		]</BOUCLE_syndic>
+	</ul>
+</div>
+</B_syndic>
+
+
+
+<INCLURE{fond=inc/inc-noticesconsultees}{env}>
+
+<INCLURE{fond=inc/inc-lienpmb}>

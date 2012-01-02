@@ -1,0 +1,2 @@
+#SET{composition,#CHEMIN{extra/page-#ENV{composition}|concat{.html}}|?{#ENV{composition},dist}}
+#INCLURE{fond=extra/page-#GET{composition},env}

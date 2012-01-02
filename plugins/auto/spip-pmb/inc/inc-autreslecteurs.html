@@ -1,0 +1,23 @@
+[(#SET{tab_notices,[(#ENV{id}|pmb_ws_autres_lecteurs)]})]	
+		
+<B_autres_lecteurs>
+<div class="pmb-autreslecteurs">
+	<h2><:pmb:autres_lecteurs:></h2>
+
+	<table class="spip" style="width: 99%;">
+		<thead><tr class="row_first"><th></th><th><:pmb:titre:></th><th><:pmb:auteur:></th></tr></thead>
+		<tbody>
+		<BOUCLE_autres_lecteurs(POUR){tableau #GET{tab_notices}}>
+		[(#COMPTEUR_BOUCLE|>{1}|oui)
+		  <tr class="[(#COMPTEUR_BOUCLE|modulo{2}|?{row_even,row_odd})]">
+		      <td><a href="[(#URL_PAGE{notice_display,id=[(#VALEUR|table_valeur{'id'})]})]">[(#REM|?{'','<img />'}|inserer_attribut{alt,''}|inserer_attribut{height,'80'}|inserer_attribut{class,spip_logos}|inserer_attribut{src,[(#VALEUR|table_valeur{'logo_src'})]})]</a></td>
+		      <td><a href="[(#URL_PAGE{notice_display,id=[(#VALEUR|table_valeur{'id'})]})]">[(#VALEUR|table_valeur{'titre'})]</a></td>
+		      <td><a href="[(#URL_PAGE{author_see,id=[(#VALEUR|table_valeur{'id_auteur'})]})]">[(#VALEUR|table_valeur{'lesauteurs'})]</a></td>
+		  </tr>
+		]
+		</BOUCLE_autres_lecteurs>
+		</tbody>
+
+	</table>
+</div> 
+</B_autres_lecteurs>

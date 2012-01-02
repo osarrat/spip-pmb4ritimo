@@ -1,0 +1,33 @@
+<li class="item hentry[ (#ENV{surlignable}|oui)surlignable][ (#ENV{compteur}|=={1}|oui)premier]">
+	
+      <div class="logo-encart"><a href="[(#URL_PAGE{notice_display,id=[(#ENV{notice}|pmb_notice_champ{'id'})][&amp;url_ret=(#ENV{url_ret})]})]">
+								[(#ENV{notice}|pmb_notice_champ{'logo_src'}|oui)
+										[(#ENV{'copieimage','non'}|=={'non'}|non)
+											      [(#REM|?{'','<img />'}|inserer_attribut{class,spip_logos}|inserer_attribut{src,[(#ENV{notice}|pmb_notice_champ{'logo_src'}|copie_locale{'force'})]}|image_reduire{100,0})]
+										]
+										[(#ENV{'copieimage','non'}|=={'non'}|oui)
+											    [(#REM|?{'','<img />'}|inserer_attribut{class,spip_logos}|inserer_attribut{alt,''}|inserer_attribut{src,[(#ENV{notice}|pmb_notice_champ{'logo_src'})]})]
+										]
+								]
+								[(#ENV{notice}|pmb_notice_champ{'logo_src'}|non)
+								    [(#REM) pas de logo, on regarde si une image est en document joint ]
+								    [(#SET{tab_docnum, [(#ENV{notice}|pmb_notice_champ{'id'}|pmb_ws_documents_numeriques)]})]
+								    <INCLURE{fond=inc/inc-image-doc-joint}{tab_docnum=#GET{tab_docnum}}{env}>
+
+								]
+								</a></div>
+								<h3 class="h3 entry-title[ (#ENV{surlignable}|oui)surlignable]"><a href="[(#URL_PAGE{notice_display,id=[(#ENV{notice}|pmb_notice_champ{'id'})][&amp;url_ret=(#ENV{url_ret})]})]"[ title="(#NOM_SITE|texte_backend)"]>[(#ENV{notice}|pmb_notice_champ{'titre'})]</a></h3> 
+									    [<span class="auteurs[ (#ENV{surlignable}|oui)surlignable]"><:par_auteur:> 
+										      (#ENV{notice}|pmb_notice_champ{'liensauteurs'})</a>[, (#ENV{notice}|pmb_notice_champ{'liensauteurs2'})</a>][, (#ENV{notice}|pmb_notice_champ{'liensauteurs23'})]
+
+										      
+									    </span>]
+								[<div class="introduction entry-content[ (#ENV{surlignable}|oui)surlignable]">(#ENV{notice}|pmb_notice_champ{'resume'}|couper{[(#ENV{longueur_resume,250})],'...'})</div>]
+								<div class="meta-publi">
+								    <a class="lire-la-suite" href="[(#URL_PAGE{notice_display,id=[(#ENV{notice}|pmb_notice_champ{'id'})][&amp;url_ret=(#ENV{url_ret})]})]"><:zpip:lire_la_suite:><span class="lire-la-suite-titre"><:zpip:lire_la_suite_de:> <em>[(#ENV{notice}|pmb_notice_champ{'titre'})]</em></span></a>
+								    
+								</div>
+								<br class="nettoyeur" />
+								
+</li> 
+

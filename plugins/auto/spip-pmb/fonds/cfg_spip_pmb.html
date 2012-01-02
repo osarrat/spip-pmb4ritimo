@@ -1,0 +1,42 @@
+#CACHE{0}
+[(#REM) titre=SPIP-PMB]
+[(#REM) icone=img_pack/logo_pmb.png]
+<!-- descriptif=
+<p>
+<:pmb:parametrage_plugin:>
+</p>
+-->
+<form method="post" action="#SELF">[(#ENV{_cfg_}|form_hidden)]
+	<fieldset>
+		<legend><:pmb:parametrage_catalogue:></legend>
+		<table>
+			<tr>
+				<td><label for="url"><:pmb:adress_opac:> :</label></td>
+				<td><input type="text" name="url" id="url" value="[(#ENV{url,http://demo.bibli.fr/opac/})]" /></td>
+			</tr>
+			<tr>
+				<td><label for="wsdl"><:pmb:wsdl:> :</label></td>
+				<td><input type="text" name="wsdl" id="wsdl" value="[(#ENV{wsdl})]" /></td>
+			</tr>
+			<tr>
+				<td><label for="jsonrpc"><:pmb:jsonrpc:> :</label></td>
+				<td><input type="text" name="jsonrpc" id="jsonrpc" value="[(#ENV{jsonrpc})]" /></td>
+			</tr>
+			<tr>
+				<td><label for="rpc_type"><:pmb:rpc_type:> :</label></td>
+				<td>
+					<select name="rpc_type" id="rpc_type">
+						<option value='jsonrpc' [(#CONFIG{spip_pmb/rpc_type}|!={soap}|?{selected="selected",''})] >JSON-RPC (plus rapide, choisir par d&eacute;faut)</option>
+						<option value='soap' [(#CONFIG{spip_pmb/rpc_type}|=={soap}|?{selected="selected",''})]>SOAP</option>
+					</select>
+				</td>
+			</tr>
+		</table>
+		
+	</fieldset>
+	<div>
+		<input type="submit" name="_cfg_ok" value="<:oK:>" class="fondo" />
+		<input type="reset" value="<:reset:>" class="fondo" />
+		<input type="submit" name="_cfg_delete" value="<:supprimer:>" class="fondo" />
+	</div>
+</form>

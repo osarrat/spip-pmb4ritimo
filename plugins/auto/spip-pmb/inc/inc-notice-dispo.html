@@ -1,0 +1,29 @@
+#CACHE{0}
+
+[(#SESSION_SET{tab_noticesconsultees, [(#SESSION{tab_noticesconsultees,#ARRAY{}}|array_reverse|push{<a href='[(#URL_PAGE{notice_display}|parametre_url{id,[(#ENV{id})]})]'>[(#ENV{'titre_notice'}|urldecode)]</a>}|array_unique|array_reverse|array_slice{0,3})]})]
+
+[(#SET{tab_exemplaires, [(#ENV{id}|pmb_ws_dispo_exemplaire)]})]
+
+	<B_tab_exemplaires>
+	<div class="pmb-exemplaires">
+		<h2><:pmb:exemplaires:></h2>
+		<table class='spip exemplaires'>
+		    <tr class="row_first"><th class='expl_header_expl_cb'><:pmb:code_barre:></th><th class='expl_header_expl_cote'><:pmb:cote:> </th><th class='expl_header_tdoc_libelle'><:pmb:support:></th><th class='expl_header_location_libelle'><:pmb:localisation:></th><th class='expl_header_section_libelle'><:pmb:section:></th><th><abbr title="<:pmb:disponiblite:>"><:pmb:disponiblite_abbr:></abbr></th></tr>
+
+		    <BOUCLE_tab_exemplaires(POUR){tableau #GET{tab_exemplaires}}>
+			  <tr class="[(#COMPTEUR_BOUCLE|modulo{2}|?{row_even,row_odd})]">
+				    <td class='expl_cb'>[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, cb})]</td>
+				    <td class='expl_cote'>[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, cote})]</td>
+				    <td class='tdoc_libelle'>[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, support})]</td>
+				    <td class='location_libelle'><a href="[(#URL_PAGE{catalogue}|parametre_url{connect,''}|parametre_url{id_location,[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, location_id})]})]">[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, location_caption})]</a></td>
+				    <td class='section_libelle'><a href="[(#URL_PAGE{catalogue}|parametre_url{connect,''}|parametre_url{id_section,[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, section_id})]}|parametre_url{id_location_memo,[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, location_id})]})]">[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, section_caption})]</a></td>
+				    <td class='expl_situation'>[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, situation})]</td>
+				    
+				
+			  </tr>
+
+		    </BOUCLE_tab_exemplaires>
+		</table>
+	</div>
+	</B_tab_exemplaires>
+	<//B_tab_exemplaires> 
