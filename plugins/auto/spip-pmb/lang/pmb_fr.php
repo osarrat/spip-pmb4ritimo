@@ -107,6 +107,7 @@ $GLOBALS[$GLOBALS['idx_lang']] = array(
 'wsdl' => 'Adresse du WSDL SOAP',
 'jsonrpc' => 'Adresse du service JSON-RPC',
 'rpc_type' => 'Type de serveur',
+'id_localisation' => 'Identifiant de la localisation',
 'retour_recherche' => '&#91;Retour aux r&eacute;sultats de la recherche&#93;'
 );
 ?>
