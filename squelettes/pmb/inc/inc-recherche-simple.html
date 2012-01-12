@@ -9,7 +9,7 @@
 
 			<div class='formulaire_spip'>
 
-			<form action='[(#URL_PAGE{recherche_bibli}|ancre_url{ajax-recherche-catalogue})]' method='post'>
+			<form action='[(#URL_PAGE{recherche_bibli})]' method='post'>
 				<fieldset>
 				[<input type='hidden' name='id_section' value='(#ENV{id_section})'/>]
 				[<!--<input type='hidden' name='id_location_memo' value='(#ENV{id_location_memo})'/>-->]
@@ -17,7 +17,7 @@
 				<input type='hidden' name='page' value='[(#ENV{page}|sinon{recherche})]'/>
 				<input type='hidden' name='recherche_avancee' value='1'/>
 				<input type='hidden' name='look_PMB' value='1'/>
-				<input type='hidden' name='look_FIRSTACCESS' value='1' />   
+				<!--<input type='hidden' name='look_FIRSTACCESS' value='1' />-->   
 				<input type='hidden' name='typdoctemp' value='' />
 				
 				<legend><:pmb:recherche_simple:></legend>
@@ -25,9 +25,8 @@
 				
         <:pmb:recherche_dans:> :
         <li>
-        <!-- l'id du Groupe URD sur la base de Ritimo est 38 et non 1 -->
-					<input type='radio' name='id_location_memo' value="38" checked /> #NOM_SITE_SPIP <br />
-					<input type='radio' name='id_location_memo' value="" /> <:ritimo:tous_les_centres:> (<:ritimo:y_compris:> #NOM_SITE_SPIP) 
+					<input type='radio' name='id_location_memo' value="#CONFIG{spip_pmb/id_location}" [(#ENV{id_location_memo}|=={#CONFIG{spip_pmb/id_location}}|?{' ',''})checked] /> #NOM_SITE_SPIP <br />
+					<input type='radio' name='id_location_memo' value="" [(#ENV{id_location_memo}|=={''}|?{' ',''})checked] /> <:ritimo:tous_les_centres:> (<:ritimo:y_compris:> #NOM_SITE_SPIP) 
 				</li>
 				
         <li>
