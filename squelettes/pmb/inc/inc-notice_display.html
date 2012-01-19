@@ -21,6 +21,7 @@
 	      <div class="corps-conteneur surlignable">
 		      
 		     #ENV{afficher_info}
+		
   <div class="notice-child">
 			   <table class="tabel">
 			      <tbody>
@@ -34,15 +35,7 @@
 			      [<tr><td class="bg-grey" align="left"><strong><:pmb:isbn:></strong></td><td>(#ENV{notice}|pmb_notice_champ{'isbn'})</td></tr>]
 			      [<tr><td class="bg-grey" align="left"><strong><:pmb:serie:></strong></td><td>(#ENV{notice}|pmb_notice_champ{'serie'})</td></tr>]
 			      [<tr><td class="bg-grey" align="left"><strong><:pmb:type:></strong></td><td>(#ENV{notice}|pmb_notice_champ{'type'})</td></tr>]
-			      <tr><td class="bg-grey" align="left"><strong><:pmb:description_geographique:></strong></td><td>
-<BOUCLE2(6972_pmb:NOTICES_CUSTOM_VALUES){notices_custom_origine=#ENV{notice}|pmb_notice_champ{'id'}}>
-										#NOTICES_CUSTOM_SMALL_TEXT
-										</BOUCLE2></td></tr>
-			      <tr><td class="bg-grey" align="left"><strong><:pmb:mots_cles:></strong></td><td>
-<BOUCLE1(6972_pmb:NOTICES){notice_id=#ENV{notice}|pmb_notice_champ{'id'}}>
-										#INDEX_L
-										</BOUCLE1>
-</td></tr>
+			      
     
 			      </tbody>
 			  </table>
