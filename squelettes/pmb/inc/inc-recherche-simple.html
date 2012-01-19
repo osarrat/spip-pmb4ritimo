@@ -22,15 +22,16 @@ Exemple :
 				<input type='hidden' name='recherche_avancee' value='1'/>
 				<input type='hidden' name='look_PMB' value='1'/>
 				<input type='hidden' name='look_ALL' value='1' />   
-				<input type='hidden' name='typdoctemp' value='' />
+				<input type='hidden' name='typdoctemp' value='' />  
+				<input type='hidden' name='initialisation-finie' value='[(#ENV{initialisation-finie}|sinon{'oui'})]' />
 				
 				<legend><:pmb:recherche_simple:></legend>
 				<ul style="list-style: none;">
 				
         <:pmb:recherche_dans:> :
         <li>
-					<input type='radio' name='id_location_memo' value="#CONFIG{spip_pmb/id_location}" [(#ENV{id_location_memo}|=={#CONFIG{spip_pmb/id_location}}|?{' ',''})checked] /> #NOM_SITE_SPIP <br />
-					<input type='radio' name='id_location_memo' value="" [(#ENV{id_location_memo}|=={''}|?{' ',''})checked] /> <:ritimo:tous_les_centres:> (<:ritimo:y_compris:> #NOM_SITE_SPIP) 
+					<input type='radio' name='id_location_memo' value="#CONFIG{spip_pmb/id_location}" [(#ENV{id_location_memo}|=={#CONFIG{spip_pmb/id_location}}|?{' ',''})checked] [(#ENV{initialisation-finie}|sinon{"checked"})] /> #NOM_SITE_SPIP <br />
+					<input type='radio' name='id_location_memo' value="" [(#ENV{id_location_memo}|=={''}|et{#ENV{initialisation-finie}}) checked] /> <:ritimo:tous_les_centres:> (<:ritimo:y_compris:> #NOM_SITE_SPIP) 
 				</li>
 				
         <li>
