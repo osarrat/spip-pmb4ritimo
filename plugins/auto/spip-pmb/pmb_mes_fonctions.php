@@ -361,14 +361,12 @@ function pmb_recherche_extraire($recherche='', $url_base, $look_ALL='', $look_AU
 			//cas d'une recherche simple 
 			//if (($look_ALL)&&(!$id_section)&&(!$typdoc)){  //2011-12-05 : ajout de l'id_location vide comme condition pour recherche simple
 
-var_dump($id_location);
 			if (($look_ALL)&&(!$id_section)&&(!$typdoc)&&(!$id_location)){
 			  $r=$ws->pmbesOPACAnonymous_simpleSearch($searchType,$recherche);
 			/*} else if (($look_ALL)&&($id_section)&&(!$typdoc)){
 			  $r=$ws->pmbesSearch_simpleSearchLocalise($searchType,$recherche,$id_location,$id_section);
 			*/} 
-			 else {
-var_dump($search);			 
+			 else {			 
 			 try {
 			  $r=$ws->pmbesOPACAnonymous_advancedSearch($search);
 			 }catch (Exception $e) {

@@ -1,4 +1,8 @@
-
+[(#REM)
+Attention, bien penser à inclure ce formulaire en passant aussi l'environnement:
+Exemple :
+<INCLURE{fond=pmb/inc/inc-recherche-simple}{env}> 
+]
       <!--br class="nettoyeur" /-->
       [<h2><:pmb:recherche_dans:> : (#ENV{tab_sections}|pmb_tableau2_valeur{0,section_caption}|ucfirst)</h2>]
 				
@@ -17,7 +21,7 @@
 				<input type='hidden' name='page' value='[(#ENV{page}|sinon{recherche})]'/>
 				<input type='hidden' name='recherche_avancee' value='1'/>
 				<input type='hidden' name='look_PMB' value='1'/>
-				<!--<input type='hidden' name='look_FIRSTACCESS' value='1' />-->   
+				<input type='hidden' name='look_ALL' value='1' />   
 				<input type='hidden' name='typdoctemp' value='' />
 				
 				<legend><:pmb:recherche_simple:></legend>
