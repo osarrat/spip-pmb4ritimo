@@ -8,7 +8,7 @@
 	<div class="pmb-exemplaires">
 		<h2><:pmb:exemplaires:></h2>
 		<table class='spip exemplaires'>
-		    <tr class="row_first"><th class='expl_header_expl_cb'><:pmb:code_barre:></th><th class='expl_header_expl_cote'><:pmb:cote:> </th><th class='expl_header_tdoc_libelle'><:pmb:support:></th><th class='expl_header_location_libelle'><:pmb:localisation:></th><th class='expl_header_section_libelle'><:pmb:section:></th><th><abbr title="<:pmb:disponiblite:>"><:pmb:disponiblite_abbr:></abbr></th></tr>
+		    <tr class="row_first"><th class='expl_header_expl_cb'><:pmb:code_barre:></th><th class='expl_header_expl_cote'><:pmb:cote:> </th><th class='expl_header_tdoc_libelle'><:pmb:support:></th><th class='expl_header_location_libelle'><:pmb:localisation:></th><!--<th class='expl_header_section_libelle'><:pmb:section:></th>--><th><abbr title="<:pmb:disponiblite:>"><:pmb:disponiblite_abbr:></abbr></th></tr>
 
 		    <BOUCLE_tab_exemplaires(POUR){tableau #GET{tab_exemplaires}}>
 			  <tr class="[(#COMPTEUR_BOUCLE|modulo{2}|?{row_even,row_odd})]">
@@ -22,7 +22,10 @@
 				    <!--td class='section_libelle'><a href="[(#URL_PAGE{catalogue}|parametre_url{connect,''}|parametre_url{id_section,[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, section_id})]}|parametre_url{id_location_memo,[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, location_id})]})]">[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, section_caption})]</a></td-->
 
 <!-- desactivation du lien de localisation de la section-->
+<!-- On peut aussi ne pas afficher du tout la section qui est toujours indéterminée-->
+<!---
 				   <td class='section_libelle'>[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, section_caption})]</td>
+-->
 				    <td class='expl_situation'>[(#GET{tab_exemplaires}|pmb_tableau2_valeur{#CLE, situation})]</td>
 				    
 				
