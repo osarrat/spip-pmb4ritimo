@@ -29,6 +29,8 @@ function pmb_upgrade($nom_meta_base_version,$version_cible){
 function pmb_vider_tables($nom_meta_base_version) {
 	sql_drop_table("spip_auteurs_pmb");
 	effacer_meta($nom_meta_base_version);
+    /* on efface aussi l'entrée créée par CFG dans spip_meta */
+    effacer_meta("spip_pmb");
 }
 
 ?>
