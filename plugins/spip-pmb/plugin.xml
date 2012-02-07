@@ -1,9 +1,10 @@
 <plugin>
-	<nom>Portail Web pour PMB (version sp&eacute;ciale Ritimo)</nom>
+	<nom>Portail Web pour PMB (version spéciale Ritimo)</nom>
 	<slogan>Utiliser SPIP comme portail web du logiciel PMB</slogan>
 	<auteur>[OpenStudio->http://www.openstudio.fr]</auteur>
 	<licence>&#169; 2010 - GPL</licence>
-	<version>1.0.4 (fork pour Ritimo)</version>
+	<version>1.0.4 (fork Ritimo)</version>
+    <version_base>0.1</version_base>
 	<icon>img_pack/logo-spip-pmb.png</icon>
 	<etat>stable</etat>
 	<description>
@@ -15,8 +16,16 @@ PMB est un Sigb (Syst&#232;me Int&#233;gr&#233; de Gestion de Biblioth&#232;que)
 	<options>pmb_mes_options.php</options>
 	
 	<fonctions>pmb_mes_fonctions.php</fonctions>
-	<install>base/pmb_tables.php</install>
 	<prefix>pmb</prefix>
+	<install>base/pmb_install.php</install>
+    <pipeline>
+		<nom>declarer_tables_principales</nom>
+		<inclure>base/pmb.php</inclure>
+	</pipeline>
+	<pipeline>
+		<nom>declarer_tables_interfaces</nom>
+		<inclure>base/pmb.php</inclure>
+	</pipeline>
 
 	<necessite id='spip' version='[2.0.10;2.1.99]' />
  	<necessite id="CFG" version="[1.0;]" />
