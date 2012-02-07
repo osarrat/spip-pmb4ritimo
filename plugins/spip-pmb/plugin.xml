@@ -1,9 +1,9 @@
 <plugin>
-	<nom>Portail Web pour PMB</nom>
+	<nom>Portail Web pour PMB (version sp&eacute;ciale Ritimo)</nom>
 	<slogan>Utiliser SPIP comme portail web du logiciel PMB</slogan>
 	<auteur>[OpenStudio->http://www.openstudio.fr]</auteur>
 	<licence>&#169; 2010 - GPL</licence>
-	<version>1.0.4</version>
+	<version>1.0.4 (fork pour Ritimo)</version>
 	<icon>img_pack/logo-spip-pmb.png</icon>
 	<etat>stable</etat>
 	<description>

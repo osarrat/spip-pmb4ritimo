@@ -53,7 +53,7 @@
 			  <a href="[(#URL_PAGE{ajax-docnum}|parametre_url{id,#ENV{id}})]" class="invisible"><:titre_documents_joints:></a>
 	</div>]
 	<div id="disponibilite-ajax" class="ajax-content">
-			    <a href="[(#URL_PAGE{ajax-notice-dispo}|parametre_url{id,#ENV{id}}|parametre_url{titre_notice,[(#ENV{notice}|pmb_notice_champ{'titre'}|urlencode)]})]" class="invisible"><:pmb:exemplaires:></a>
+			    <a href="[(#URL_PAGE{pmb/ajax-notice-dispo}|parametre_url{id,#ENV{id}}|parametre_url{titre_notice,[(#ENV{notice}|pmb_notice_champ{'titre'}|urlencode)]})]" class="invisible"><:pmb:exemplaires:></a>
 <img src="#CHEMIN{img/ajaxLoader.gif}" class="ajax-loader" alt="<:pmb:chargement:>" width="43" height="43" />
 	</div>
 <!--Lien pour voir les ouvrages reservés par les autres lecteurs-->
