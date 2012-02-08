@@ -1,8 +1,0 @@
-<BOUCLE_tab_docnumimages(POUR){tableau #ENV{tab_docnum}}{0,1}>[(#ENV{tab_docnum}|pmb_tableau2_valeur{#CLE, mimetype}|contient{image}|oui)							[(#ENV{'copieimage','non'}|=={'non'}|non)
-		[(#REM|sinon{'<img />'}|inserer_attribut{src,[(#ENV{tab_docnum}|pmb_tableau2_valeur{#CLE, downloadUrl}|sinon{[(#ENV{tab_docnum}|pmb_tableau2_valeur{#CLE, url})]})]}|image_reduire{0,100}|inserer_attribut{class,spip_logos})]
-	]
-	[(#ENV{'copieimage','non'}|=={'non'}|oui)
-		[(#REM|sinon{'<img />'}|inserer_attribut{width,'100'}|inserer_attribut{src,[(#ENV{tab_docnum}|pmb_tableau2_valeur{#CLE, downloadUrl}|sinon{[(#ENV{tab_docnum}|pmb_tableau2_valeur{#CLE, url})]})]}|inserer_attribut{class,spip_logos})]				
-	]
-	
-]</BOUCLE_tab_docnumimages>
