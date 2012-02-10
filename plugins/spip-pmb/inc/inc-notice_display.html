@@ -1,0 +1,118 @@
+
+
+
+
+
+
+
+	[(#ENV{afficher_logo}|=={non}|non)
+	    [(#ENV{notice}|pmb_notice_champ{'logo_src'}|non)
+										[(#ENV{copie_image}|=={non}|non)
+					     					      [(#REM|?{'','<img />'}|inserer_attribut{class,spip_logos}|inserer_attribut{src,[(#ENV{notice}|pmb_notice_champ{'logo_src'}|copie_locale{'force'})]}|image_reduire{130,0}|inserer_attribut{alt,''})]
+										]
+										[(#ENV{copie_image}|=={non}|non)
+
+										      [(#REM|?{'','<img />'}|inserer_attribut{style,'max-width:130px;'}|inserer_attribut{class,spip_logos}|inserer_attribut{alt,''}|inserer_attribut{src,[(#ENV{notice}|pmb_notice_champ{'logo_src'})]})]
+										]
+
+					  
+	    ]
+	]
+	      <div class="corps-conteneur surlignable">
+		      
+		     #ENV{afficher_info}
+		
+  <div class="notice-child">
+			   <table class="tabel">
+			      <tbody>
+			      [<tr><td class="bg-grey" align="left"><strong><:pmb:auteur:></strong></td><td>(#ENV{notice}|pmb_notice_champ{'lesauteurs'})</td></tr>]
+			      [<tr><td class="bg-grey" align="left"><strong><:pmb:editeur:></strong></td><td>(#ENV{notice}|pmb_notice_champ{'editeur'})</td></tr>]
+			      [<tr><td class="bg-grey" align="left"><strong><:pmb:collection:></strong></td><td>[(#ENV{notice}|pmb_notice_champ{'id_collection'}|oui)<a href="[(#URL_PAGE{coll_see}|parametre_url{id,[(#ENV{notice}|pmb_notice_champ{'id_collection'})]})]">](#ENV{notice}|pmb_notice_champ{'collection'})[(#ENV{notice}|pmb_notice_champ{'id_collection'}|oui)</a>]</td></tr>]
+			      [<tr><td class="bg-grey" align="left"><strong><:pmb:format:></strong></td><td>(#ENV{notice}|pmb_notice_champ{'format'})</td></tr>]
+			      [<tr><td class="bg-grey" align="left"><strong><:pmb:annee_publication:></strong></td><td>(#ENV{notice}|pmb_notice_champ{'annee_publication'})</td></tr>]
+			      [<tr><td class="bg-grey" align="left"><strong><:pmb:nombre_de_pages:></strong></td><td>(#ENV{notice}|pmb_notice_champ{'importance'})</td></tr>]
+			      [<tr><td class="bg-grey" align="left"><strong><:pmb:presentation:></strong></td><td>(#ENV{notice}|pmb_notice_champ{'presentation'})</td></tr>]
+			      [<tr><td class="bg-grey" align="left"><strong><:pmb:isbn:></strong></td><td>(#ENV{notice}|pmb_notice_champ{'isbn'})</td></tr>]
+			      [<tr><td class="bg-grey" align="left"><strong><:pmb:serie:></strong></td><td>(#ENV{notice}|pmb_notice_champ{'serie'})</td></tr>]
+			      [<tr><td class="bg-grey" align="left"><strong><:pmb:type:></strong></td><td>(#ENV{notice}|pmb_notice_champ{'type'})</td></tr>]
+			      
+    
+			      </tbody>
+			  </table>
+		      </div>
+		      <!--br class="nettoyeur" /-->
+		
+		      
+		      [(#ENV{afficher_resume}|=={oui}|oui)
+			[<div class="texte entry-content">(#ENV{notice}|pmb_notice_champ{'resume'})</div>]
+		      ]
+	      </div>
+	      <!--br class="nettoyeur" /-->
+<!--à decommenter s'il existe des documents joints aux notices-->
+	[(#REM)<div id="docnum-ajax" class="ajax-content">
+			  <a href="[(#URL_PAGE{ajax-docnum}|parametre_url{id,#ENV{id}})]" class="invisible"><:titre_documents_joints:></a>
+	</div>]
+	<div id="disponibilite-ajax" class="ajax-content">
+			    <a href="[(#URL_PAGE{pmb/ajax-notice-dispo}|parametre_url{id,#ENV{id}}|parametre_url{titre_notice,[(#ENV{notice}|pmb_notice_champ{'titre'}|urlencode)]})]" class="invisible"><:pmb:exemplaires:></a>
+<img src="#CHEMIN{img/ajaxLoader.gif}" class="ajax-loader" alt="<:pmb:chargement:>" width="43" height="43" />
+	</div>
+<!--Lien pour voir les ouvrages reservés par les autres lecteurs-->
+	[(#REM)<div id="autreslecteurs-ajax" class="ajax-content">
+			  <a href="[(#URL_PAGE{ajax-autreslecteurs}|parametre_url{id,#ENV{id}})]" class="invisible"><:pmb:autres_lecteurs:></a>
+	</div>]
+	  <script type="text/javascript">
+$(document).ready(function() {
+
+  
+	[(#ENV{afficher_docnum}|=={non}|non)
+	      $('#docnum-ajax').load("[(#URL_PAGE{ajax-docnum})]", { 'id': '#ENV{id}' });
+	]
+
+	[(#ENV{afficher_dispo}|=={non}|non)
+	      $('#disponibilite-ajax').load("[(#URL_PAGE{ajax-notice-dispo})]", { 'id': '#ENV{id}', 'titre_notice' : "[(#ENV{notice}|pmb_notice_champ{'titre'}|urlencode)]" }, function (responseText, textStatus, XMLHttpRequest) { $(this).find('.ajax-loader').remove();});
+	]
+	
+	[(#ENV{afficher_autres}|=={non}|non)
+	      $('#autreslecteurs-ajax').load("[(#URL_PAGE{ajax-autreslecteurs})]", { 'id': '#ENV{id}' });
+	]
+});
+	</script>
+
+		 <div class="pmb-toolbox" id="compte-lecteur">
+			[(#REM)<h2><:pmb:compte_lecteur:></h2>]
+			<B_auteurpmb>
+			<BOUCLE_auteurpmb(AUTEURS_PMB){id_auteur=#SESSION{id_auteur}}>
+			      [(#ENV{afficher_toolbox}|=={non}|non)
+				    [(#PMB_SESSION|oui)
+					[(#ENV{reserver}|=={1}|oui)
+						      <strong>
+
+
+						   [(#REM) [(#PMB_SESSION|pmb_reserver_ouvrage{[(#ENV{notice}|pmb_notice_champ{'id'})],'',''})]]
+						      </strong>
+					]
+					<ul class="spip">
+						<li><a href="#CONFIG{spip_pmb/url}addtags.php?noticeid=#ENV{id}" class="lien-modal"><:pmb:ajouter_tag:></a></li>
+						<li><a href="#CONFIG{spip_pmb/url}avis.php?todo=liste&noticeid=#ENV{id}" class="lien-modal"><:pmb:donner_avis:></a></li>
+						<li><a href="[(#URL_PAGE{notice_display}|parametre_url{id,#ENV{id}}|parametre_url{reserver,1})]#compte-lecteur"><:pmb:reserver_ouvrage:></a></li>
+
+					</ul>
+				    ]
+				   [(#REM) [(#PMB_SESSION|non)
+				      <i>Identifiez-vous pour r&eacute;server cet ouvrage ou donner votre avis.</i>
+				    ]]
+			      ]
+			</BOUCLE_auteurpmb>
+			</B_auteurpmb>
+			  [(#REM)[(#ENV{afficher_toolbox}|=={non}|non)
+				<i>Identifiez-vous pour r&eacute;server cet ouvrage ou donner votre avis.</i>
+			  ]]
+			<//B_auteurpmb>
+			
+		</div>	
+
+[(#REM)
+<a href="#" onclick="w=window.open('[(#CONFIG{spip_pmb/url})/]do_resa.php?lvl=resa&id_notice=[(#ENV{id})]&oresa=popup','doresa','scrollbars=yes,width=500,height=600,menubar=0,resizable=yes'); w.focus(); return false;">> Réserver l'ouvrage</a>]
+
+[<a href="(#ENV{url_ret}|urldecode)" class="lien-retour-recherche"><:pmb:retour_recherche:></a>]
+	

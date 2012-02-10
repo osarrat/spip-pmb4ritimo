@@ -12,7 +12,7 @@
 	<div class="liste menu articles ouvrages">
 			[(#SET{tab_notices,[(#ENV{tab_resultat}|pmb_notice_champ{'notice_ids'})]})]
 			<B_tab_resultat>
-				<br class="nettoyeur" />
+				<!--br class="nettoyeur" /-->
 				[(#GET{tab_notices}|pmb_tableau2_valeur{0,nb_resultats}|>{1}|oui)
 				      [<p><:pmb:resultats:> [(#ENV{debut}|plus{1})] <:pmb:a:> [(#ENV{debut}|plus{[(#ENV{fin}|sinon{5})]}|min{[(#GET{tab_notices}|pmb_tableau2_valeur{0,nb_resultats})]})] <:pmb:sur:> (#GET{tab_notices}|pmb_tableau2_valeur{0,nb_resultats}) <:pmb:ouvrages_trouves:>.</p>]
 				 ]
@@ -21,7 +21,7 @@
 				 ]
 				[(#GET{tab_notices}|pmb_tableau2_valeur{0,nb_resultats}|moins{5}|<={0}|non)<a style="float: right;" class="pmb_pagination_suiv" href="[(#SELF|parametre_url{connect,''}|parametre_url{debut,[(#ENV{debut}|plus{5})]})]#resultats_recherche"><:pmb:resultats_suivants:> >></a>]
 				[(#ENV{debut}|moins{5}|>={0}|oui)<a style="float: left;" class="pmb_pagination_prec" href="[(#SELF|parametre_url{connect,''}|parametre_url{debut,[(#ENV{debut}|moins{5})]})]#resultats_recherche"><< <:pmb:resultats_precedents:></a>]
-				<br class="nettoyeur" />
+				<!--br class="nettoyeur" /-->
 			<h2 class="h2"><:pmb:ouvrages:></h2>
 			<ul class="liste-items">
 				<BOUCLE_tab_resultat(POUR){tableau #GET{tab_notices}}>

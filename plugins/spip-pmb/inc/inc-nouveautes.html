@@ -1,7 +1,7 @@
 	#SET{tab_ids, #ARRAY{}}
 	
 	<B_syndic_pmb>
-	<BOUCLE_syndic_pmb(SYNDIC_ARTICLES){par date}{inverse}{0,100}>[(#URL_ARTICLE|match{notice_display}|oui)
+	<BOUCLE_syndic_pmb(SYNDIC_ARTICLES){par date}{inverse}>[(#URL_ARTICLE|match{notice_display}|oui)
 				[(#SET{tab_ids, [(#GET{tab_ids}|push{[(#URL_ARTICLE|extraire_attribut_url{id})]})]})]
 			]</BOUCLE_syndic_pmb>
 	

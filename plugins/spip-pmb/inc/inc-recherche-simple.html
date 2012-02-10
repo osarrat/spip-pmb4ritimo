@@ -1,0 +1,54 @@
+[(#REM)
+Attention, bien penser à inclure ce formulaire en passant aussi l'environnement:
+Exemple :
+<INCLURE{fond=inc-recherche-simple}{env}> 
+]
+      <!--br class="nettoyeur" /-->
+      [<h2><:pmb:recherche_dans:> : (#ENV{tab_sections}|pmb_tableau2_valeur{0,section_caption}|ucfirst)</h2>]
+				
+	<div id="search">
+
+			
+			<p class="p1"><span></span></p>
+
+			<div class='formulaire_spip'>
+
+			<form action='[(#URL_PAGE{recherche_bibli})]' method='post'>
+				<fieldset>
+				[<input type='hidden' name='id_section' value='(#ENV{id_section})'/>]
+				[<!--<input type='hidden' name='id_location_memo' value='(#ENV{id_location_memo})'/>-->]
+				[<input type='hidden' name='titre_section' value='(#ENV{titre_section})'/>]
+				<input type='hidden' name='page' value='[(#ENV{page}|sinon{recherche})]'/>
+				<input type='hidden' name='recherche_avancee' value='1'/>
+				<input type='hidden' name='look_PMB' value='1'/>
+				<input type='hidden' name='look_ALL' value='1' />   
+				<input type='hidden' name='typdoctemp' value='' />  
+				<input type='hidden' name='initialisation-finie' value='[(#ENV{initialisation-finie}|sinon{'oui'})]' />
+				
+				<legend><:pmb:recherche_simple:></legend>
+				<ul style="list-style: none;">
+				
+        <:pmb:recherche_dans:> :
+        <li>
+					<input type='radio' name='id_location_memo' value="#CONFIG{spip_pmb/id_location}" [(#ENV{id_location_memo}|=={#CONFIG{spip_pmb/id_location}}|?{' ',''})checked] [(#ENV{initialisation-finie}|sinon{"checked"})] /> #NOM_SITE_SPIP <br />
+					<input type='radio' name='id_location_memo' value="" [(#ENV{id_location_memo}|=={''}|et{#ENV{initialisation-finie}}) checked] /> <:ritimo:tous_les_centres:> (<:ritimo:y_compris:> #NOM_SITE_SPIP) 
+				</li>
+				
+        <li>
+					<input type='text' name='recherche' class='text_query' value="[(#ENV{recherche})]" size='35' />
+				</li>
+				    
+
+				<li class="boutons">
+					<input type='submit' name='ok' value='<:pmb:rechercher:>' class='boutonrechercher'/>                           
+				</li>
+
+				</ul>
+
+				</fieldset>
+
+			</form>
+
+			</div>
+
+		</div>

@@ -1,0 +1,20 @@
+[(#SET{tab_docnum, [(#ENV{id}|pmb_ws_documents_numeriques)]})]
+
+	[(#REM) Portfolio : album d'images]
+	
+
+
+	[(#REM) Liste des autres documents joints ]
+	<B_tab_docnumjoints>
+	<div class="liste documents documents_joints">
+		<h2 class="h2"><:titre_documents_joints:></h2>
+		<ul class="liste-items">
+		  <BOUCLE_tab_docnumjoints(POUR){tableau #GET{tab_docnum}}>[(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, mimetype}|contient{image}|non)[
+			<li class="item">
+			      <strong><a href="(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, downloadUrl})" title="<:bouton_telecharger:>" type="[(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, mimetype})]">[(#GET{tab_docnum}|pmb_tableau2_valeur{#CLE, name}|sinon{<:info_document:>})]</a></strong>
+			 </li>
+		  ]]</BOUCLE_tab_docnumjoints>
+	</div>
+	</B_tab_docnumjoints>
+	<//B_tab_docnumjoints> 
+

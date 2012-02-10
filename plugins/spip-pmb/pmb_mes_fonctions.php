@@ -583,7 +583,9 @@ function pmb_ws_parser_notice_array($value, &$tresultat) {
 										break;	    								
 	    							}
 	    							case 'b': {
-										$tresultat['lesauteurs2'] = $field_value." ".$tresultat['lesauteurs'];
+										//$tresultat['lesauteurs2'] = $field_value." ".$tresultat['lesauteurs']; //OSarrat20120207
+										$tresultat['lesauteurs2'] = $field_value." ".$tresultat['lesauteurs2'];
+										$tresultat['lesauteurs'] = $tresultat['lesauteurs']." ; ".$tresultat['lesauteurs2']; //OSarrat20120207										
 										$tresultat['liensauteurs2'] .= " ".$field_value;
 										break;	    								
 	    							}
@@ -599,7 +601,9 @@ function pmb_ws_parser_notice_array($value, &$tresultat) {
 										break;	    								
 	    							}
 	    							case 'b': {
-										$tresultat['lesauteurs3'] = $field_value." ".$tresultat['lesauteurs'];
+										//$tresultat['lesauteurs3'] = $field_value." ".$tresultat['lesauteurs']; //OSarrat20120207
+										$tresultat['lesauteurs3'] = $field_value." ".$tresultat['lesauteurs3'];
+										$tresultat['lesauteurs'] = $tresultat['lesauteurs']." ; ".$tresultat['lesauteurs3']; //OSarrat20120207
 										$tresultat['liensauteurs3'] .= " ".$field_value;
 										break;	    								
 	    							}
@@ -618,9 +622,10 @@ function pmb_ws_parser_notice_array($value, &$tresultat) {
 	    $tresultat['liensauteurs2']=implode(', ', $authors_701);
 	    $tresultat['liensauteurs3']=implode(', ', $authors_702);
 	    
-	    if ($tresultat['lesauteurs'] == "")
-		  $tresultat['lesauteurs'] = $tresultat['auteur'];
-	     $tresultat['logo_src'] = lire_config("spip_pmb/url","http://tence.bibli.fr/opac")."/getimage.php?url_image=http%3A%2F%2Fimages-eu.amazon.com%2Fimages%2FP%2F!!isbn!!.08.MZZZZZZZ.jpg&noticecode=".str_replace("-","",$tresultat['isbn']);
+	    if ($tresultat['lesauteurs'] == "") {
+		    $tresultat['lesauteurs'] = $tresultat['auteur'];
+		  }
+	    $tresultat['logo_src'] = lire_config("spip_pmb/url","http://tence.bibli.fr/opac")."/getimage.php?url_image=http%3A%2F%2Fimages-eu.amazon.com%2Fimages%2FP%2F!!isbn!!.08.MZZZZZZZ.jpg&noticecode=".str_replace("-","",$tresultat['isbn']);
 
 	    //si pas de numéro isbn (exemple jouets ludothèque) il n'y aura pas de logo
 	     if ($tresultat['isbn'] == '') $tresultat['logo_src'] = '';

@@ -1,5 +1,5 @@
-
-      <br class="nettoyeur" />
+[(#REM) Ce squelette n'est pas terminé ]
+      <!--br class="nettoyeur" /-->
       [<h2><:pmb:recherche_dans:> : (#ENV{tab_sections}|pmb_tableau2_valeur{0,section_caption}|ucfirst)</h2>]
 				
 	<div id="search">
@@ -9,10 +9,10 @@
 
 			<div class='formulaire_spip formulaire_recherche_avancee'>
 
-			<form action='[(#URL_PAGE{recherche}|ancre_url{ajax-recherche-catalogue})]' method='post'>
+			<form action='[(#URL_PAGE{recherche_bibli}|ancre_url{ajax-recherche-catalogue})]' method='post'>
 				<fieldset>
 				[<input type='hidden' name='id_section' value='(#ENV{id_section})'/>]
-				[<input type='hidden' name='id_location_memo' value='(#ENV{id_location_memo})'/>]
+				[<!--<input type='hidden' name='id_location_memo' value='(#ENV{id_location_memo})'/>-->]
 				[<input type='hidden' name='titre_section' value='(#ENV{titre_section})'/>]
 				<input type='hidden' name='page' value='[(#ENV{page}|sinon{recherche})]'/>
 				<input type='hidden' name='recherche_avancee' value='1'/>
@@ -22,16 +22,23 @@
 				<legend><:pmb:recherche_avancee:></legend>
 				<ul>
 				
-				<li class="infos-recherche-avancee"><:pmb:info_recherche_avancee:></li>
-				<li>
-				    <input type='text' name='recherche' class='text_query' value="[(#ENV{recherche})]" size='35' />
+				<li class="infos-recherche-avancee"><:pmb:info_recherche_avancee:></li> 
+        
+        <li>
+        <!-- l'id du Groupe URD sur la base de Ritimo est 38 et non 1 -->
+					<input type='radio' name='id_location_memo' value="1" checked /> Groupe URD <br />
+					<input type='radio' name='id_location_memo' value="" /> Tous les centres Ritimo (dont le Groupe URD) 
+				</li>
+				
+        <li>
+					<input type='text' name='recherche' class='text_query' value="[(#ENV{recherche})]" size='35' />
 				</li>
 				    
 
 				<li class="boutons">
 					<input type='submit' name='ok' value='Rechercher' class='boutonrechercher'/>
 				</li>
-				<li>
+
 				    [(#SET{tab_resultat, [(#REM|sinon{0}|pmb_recuperer_champs_recherche)]})]
 				    <B_tab_resultat>
 				    <BOUCLE_tab_resultat(POUR){tableau #GET{tab_resultat}}>
@@ -52,7 +59,7 @@
 				    </BOUCLE_tab_resultat>
 				    </B_tab_resultat>
 
-				    <select name='typdoc'>  
+				    [(#REM)<select name='typdoc'>  
 					  <option  value=''>tout type de document</option>
 					  
 					  <option  value='a'[(#ENV{typdoc}|=={a}|?{' ',''})selected="selected")]>texte imprim&eacute;</option>
@@ -68,8 +75,8 @@
 					  <option  value='m'[(#ENV{typdoc}|=={m}|?{' ',''})selected="selected")]>document multim&eacute;dia</option>
 					
 					  <option  value='r'[(#ENV{typdoc}|=={r}|?{' ',''})selected="selected")]>objet &agrave; 3 dimensions, artefacts, ...</option>
-				    </select>
-				</li>
+				    </select>]
+				
 				<li>
 					<table class="spip champ-recherche">
 					<tbody>
@@ -78,24 +85,28 @@
 						  <td><input type='checkbox' name='look_AUTHOR' id='recherche_avancee_look_AUTHOR' value='1'[(#ENV{look_AUTHOR}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_AUTHOR'> Auteurs </label></td>
 						  <td><input type='checkbox' name='look_PUBLISHER' id='recherche_avancee_look_PUBLISHER' value='1'[(#ENV{look_PUBLISHER}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_PUBLISHER'> Editeurs </label></td>
 						</tr>
-						<tr class="row_odd">
+						[(#REM)<tr class="row_odd">
 						  <td><input type='checkbox' name='look_COLLECTION' id='recherche_avancee_look_COLLECTION' value='1'[(#ENV{look_COLLECTION}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_COLLECTION'> Collections </label></td>
 						  <td><input type='checkbox' name='look_SUBCOLLECTION' id='recherche_avancee_look_SUBCOLLECTION' value='1'[(#ENV{look_SUBCOLLECTION}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_SUBCOLLECTION'> Sous-collections </label></td>
-						  <td><input type='checkbox' name='look_CATEGORY' id='recherche_avancee_look_CATEGORY' value='1'[(#ENV{look_CATEGORY}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_CATEGORY'> Cat&eacute;gories </label></td>
+<tr class="row_even">
+<td><input type='checkbox' name='look_CATEGORY' id='recherche_avancee_look_CATEGORY' value='1'[(#ENV{look_CATEGORY}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_CATEGORY'> Cat&eacute;gories </label></td>]
+						  
+
+						
 						</tr>
-						<tr class="row_even">
-						  <td><input type='checkbox' name='look_KEYWORDS' id='recherche_avancee_look_KEYWORDS' value='1'[(#ENV{look_KEYWORDS}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_KEYWORDS'> Tags</label></td>
+						  <td><input type='checkbox' name='look_KEYWORDS' id='recherche_avancee_look_KEYWORDS' value='1'[(#ENV{look_KEYWORDS}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_KEYWORDS'> Mots cl&eacute;s</label></td>
 						  <td><input type='checkbox' name='look_ABSTRACT' id='recherche_avancee_look_ABSTRACT' value='1'[(#ENV{look_ABSTRACT}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_ABSTRACT'> R&eacute;sum&eacute; et notes </label></td>
-						  <td><input type='checkbox' name='look_ALL' id='recherche_avancee_look_ALL' value='1'[(#ENV{look_ALL}|=={1}|?{' ',''})checked="checked"] /><label for='look_ALL'> Tous les champs </label></td>
+						  <td><input type='checkbox' name='look_ALL' id='recherche_avancee_look_ALL' value='1'[(#ENV{look_ALL}|=={1}|?{' ',''})checked="checked"] checked="checked"/><label for='look_ALL'> Tous les champs </label></td>
 						</tr>
-						<tr class="row_odd">
+						[(#REM)<tr class="row_odd">
 						  <td><input type='checkbox' name='look_INDEXINT' id='recherche_avancee_look_INDEXINT' value='1'[(#ENV{look_INDEXINT}|=={1}|?{' ',''})checked="checked"]  /><label for='recherche_avancee_look_INDEXINT'> Indexations d&eacute;cimales </label></td>
 						  <td></td>
 						  <td></td>
-						</tr>
+						</tr>]
 					</tbody>
 					</table>
 				</li>
+<li class="infos-recherche-avancee">La base de donn&eacute;es du Groupe URD est en partie tir&eacute;e de la base de donn&eacute;es du réseau Ritimo, le centre de documentation faisant parti de Ritimo</li>
 				</ul>
 
 				</fieldset>

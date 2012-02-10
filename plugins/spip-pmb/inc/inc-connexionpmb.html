@@ -2,7 +2,7 @@
 [(#SESSION{id_auteur}|non)
       #LOGIN_PUBLIC
       
-      <br class="nettoyeur" />     
+      <!--br class="nettoyeur" /-->     
 ]
 [(#SESSION{id_auteur}|oui)
         <div class="formulaire_spip formulaire_moncomptepmb">
@@ -12,7 +12,7 @@
 		<input type="hidden" name="action" value="deconnexion_pmb" />
 		<input type="hidden" name="redirect" value="#SELF" />
 		<INCLURE{fond=inc/inc-pmbdeconnexion}{env}>
-		<br class="nettoyeur" />
+		<!--br class="nettoyeur" /-->
 	    </fieldset>
 	  </form>
      </div>
