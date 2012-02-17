@@ -1,8 +1,6 @@
 <li class="item hentry[ (#ENV{surlignable}|oui)surlignable][ (#ENV{compteur}|=={1}|oui)premier]">
 	
-<!-- pour afficher les logos des notices decommenter cette partie -->
-
-      <!--div class="logo-encart"><a href="[(#URL_PAGE{notice_display,id=[(#ENV{notice}|pmb_notice_champ{'id'})][&amp;url_ret=(#ENV{url_ret})]})]">
+      <div class="logo-encart"><a href="[(#URL_PAGE{notice_display,id=[(#ENV{notice}|pmb_notice_champ{'id'})][&amp;url_ret=(#ENV{url_ret})]})]">
 								[(#ENV{notice}|pmb_notice_champ{'logo_src'}|oui)
 										[(#ENV{'copieimage','non'}|=={'non'}|non)
 											      [(#REM|?{'','<img />'}|inserer_attribut{class,spip_logos}|inserer_attribut{src,[(#ENV{notice}|pmb_notice_champ{'logo_src'}|copie_locale{'force'})]}|image_reduire{100,0})]
@@ -17,7 +15,7 @@
 								    <INCLURE{fond=inc/inc-image-doc-joint}{tab_docnum=#GET{tab_docnum}}{env}>
 
 								]
-								</a></div-->
+								</a></div>
 
 								<h3 class="h3 entry-title[ (#ENV{surlignable}|oui)surlignable]"><a href="[(#URL_PAGE{notice_display,id=[(#ENV{notice}|pmb_notice_champ{'id'})][&amp;url_ret=(#ENV{url_ret})]})]"[ title="(#NOM_SITE|texte_backend)"]>[(#ENV{notice}|pmb_notice_champ{'titre'})]</a></h3> 
 									    [<span class="auteurs[ (#ENV{surlignable}|oui)surlignable]"><:par_auteur:> 

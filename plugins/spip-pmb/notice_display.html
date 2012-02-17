@@ -1,2 +1,3 @@
 [(#SET{notice, [(#ENV{id}|pmb_notice_extraire{#CONFIG{spip_pmb/url},'force'})]})
-]<INCLURE{fond=structure}{env}{type=page}{composition=notice_display}{notice=#GET{notice}} />
+][(#PLUGIN{Z}|oui)<INCLURE{fond=structure}{env}{type=page}{composition=notice_display}{notice=#GET{notice}} />]
+[(#PLUGIN{Z}|non)<INCLURE{fond=habillage_site_avec_notice}{env}{notice=#GET{notice}} />]
