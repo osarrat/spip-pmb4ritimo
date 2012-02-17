@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title><:resultats_recherche:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<INCLURE{fond=inc-head}>
+<meta name="robots" content="none" />
+<style>
+	.lien-retour-recherche {
+		display: block;
+		margin: 1em 0;
+	}
+</style>
+</head>
+
+<body class="page_recherche pas_surlignable">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+	
+	[(#REM) Contenu principal : Resultats de la recherche ]
+	<div id="conteneur">
+	<div id="contenu" class="pas_surlignable">
+		
+		[(#REM) Fil d'Ariane ]
+		<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_rechercher:>[ &gt; <strong class="on">(#RECHERCHE)</strong>]</div>
+		
+		[(#REM) Début du code pouvant être inséré dans votre propre squelette]
+		
+		<div class="cartouche">
+			<h1 class="h1">[(#ENV{notice}|pmb_notice_champ{'titre'})]</h1>
+			[<p class="soustitre">(#ENV{notice}|pmb_notice_champ{'soustitre'})</p>]
+		</div>
+
+		<INCLURE{fond=inc/inc-notice_display}{env}{afficher_logo=oui}{afficher_resume=oui}>
+		
+		[(#REM) Fin du code]
+		
+	</div><!--#contenu-->
+	</div><!--#conteneur-->
+	
+	[(#REM) Menu de navigation laterale ]
+	<div id="navigation">
+	
+		[(#REM) Menu de navigation par rubriques ]
+		<INCLURE{fond=inc-rubriques}{id_rubrique}>
+		
+    </div><!--#navigation-->
+	
+	[(#REM) Menu de navigation laterale ]
+	<div id="extra">
+	&nbsp;
+	</div><!--#extra-->
+	
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+    
+</div><!--#page-->
+</body>
+</html>
