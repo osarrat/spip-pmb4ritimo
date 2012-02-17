@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="#LANG" lang="#LANG" dir="#LANG_DIR">
+<head>
+<title><:resultats_recherche:> - [(#NOM_SITE_SPIP|textebrut)]</title>
+<INCLURE{fond=inc-head}>
+<meta name="robots" content="none" />
+<style>
+	.lien-recherche-avancee {
+		display: block;
+		margin: -10px 0 20px 0;
+	}
+</style>
+</head>
+
+<body class="page_recherche pas_surlignable">
+<div id="page">
+
+	[(#REM) Entete de la page + titre du site ]
+	<INCLURE{fond=inc-entete}>
+	
+	[(#REM) Contenu principal : Resultats de la recherche ]
+	<div id="conteneur">
+	<div id="contenu" class="pas_surlignable">
+		
+		[(#REM) Fil d'Ariane ]
+		<div id="hierarchie"><a href="#URL_SITE_SPIP/"><:accueil_site:></a> &gt; <:info_rechercher:>[ &gt; <strong class="on">(#RECHERCHE)</strong>]</div>
+		
+		[<div class="cartouche">
+			<h1><:resultats_recherche:></h1>
+			<p class="soustitre">&#171;&nbsp;(#RECHERCHE)&nbsp;&#187;</p>
+		</div>]
+		
+		[(#REM) Début du code pouvant être inséré dans votre propre squelette]
+				
+		#FORMULAIRE_RECHERCHE_BIBLI		
+
+
+		[(#ENV{recherche}|oui)
+		<!--Inclusion la page inc-catalogue.html pour le traitement de l'affichage du resultat provenant de la recherche dans le catalogue -->
+		<INCLURE{fond=inc/inc-catalogue}{env}>
+		]
+		
+		[(#REM) Fin du code]
+		
+	</div><!--#contenu-->
+	</div><!--#conteneur-->
+	
+	[(#REM) Menu de navigation laterale ]
+	<div id="navigation">
+	
+		[(#REM) Menu de navigation par rubriques ]
+		<INCLURE{fond=inc-rubriques}{id_rubrique}>
+		
+    </div><!--#navigation-->
+	
+	[(#REM) Menu de navigation laterale ]
+	<div id="extra">
+	&nbsp;
+	</div><!--#extra-->
+	
+	[(#REM) Pied de page ]
+	<INCLURE{fond=inc-pied}{skel=#SQUELETTE}>
+    
+</div><!--#page-->
+</body>
+</html>
